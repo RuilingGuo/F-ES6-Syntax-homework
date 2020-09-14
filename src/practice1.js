@@ -1,10 +1,13 @@
 const parseData = (input) => {
-    const {data} = input;
+    const {data, column} = input;
+    const keys = column.map(obj => obj.name)
     const output = [];
-    data.map((obj) => {
-        const [name, age, gender, birthday] = obj;
-        const result = { name, age, gender, birthday };
-        output.push(result)
+    data.map((info) => {
+        const values = {}
+        info.map((item,index) => {
+            values[keys[index]] = item
+        })
+        output.push(values)
     })
     return output;
 }
